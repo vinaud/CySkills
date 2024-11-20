@@ -1,8 +1,12 @@
 describe('Login', () => {
-  it('Should login with success', () => {
+
+  beforeEach(() => {
     cy.viewport(1920, 1080)
     cy.visit('https://playground.cyskills.com.br')
     cy.contains('h2', 'Faça login').should('be.visible')
+  });
+
+  it('Should login with success', () => {
     cy.get('[data-cy="email"]').type('papito@cyskills.com.br')
     cy.get('[data-cy="password"]').type('showtime')
     cy.get('[data-cy="login-button"]').click()
@@ -10,9 +14,6 @@ describe('Login', () => {
   })
 
   it('Should not login with wrong password', () => {
-    cy.viewport(1920, 1080)
-    cy.visit('https://playground.cyskills.com.br')
-    cy.contains('h2', 'Faça login').should('be.visible')
     cy.get('[data-cy="email"]').type('papito@cyskills.com.br')
     cy.get('[data-cy="password"]').type('s14242424')
     cy.get('[data-cy="login-button"]').click()
@@ -20,9 +21,6 @@ describe('Login', () => {
   })
 
   it('Should not login with not registered email', () => {
-    cy.viewport(1920, 1080)
-    cy.visit('https://playground.cyskills.com.br')
-    cy.contains('h2', 'Faça login').should('be.visible')
     cy.get('[data-cy="email"]').type('404@cyskills.com.br')
     cy.get('[data-cy="password"]').type('s14242424')
     cy.get('[data-cy="login-button"]').click()
@@ -30,9 +28,6 @@ describe('Login', () => {
   })
 
   it('Should not login with incorrect email', () => {
-    cy.viewport(1920, 1080)
-    cy.visit('https://playground.cyskills.com.br')
-    cy.contains('h2', 'Faça login').should('be.visible')
     cy.get('[data-cy="email"]').type('www.com')
     cy.get('[data-cy="password"]').type('s14242424')
     cy.get('[data-cy="login-button"]').click()
