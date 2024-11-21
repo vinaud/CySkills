@@ -29,6 +29,10 @@ Cypress.Commands.add('login', (email, password) => {
     cy.get('[data-cy="password"]').type(password)
     cy.get('[data-cy="login-button"]').click()
   })
+
+  Cypress.Commands.add('userLoggedIn', () => {
+    cy.get('[data-cy="welcome-title"]').should('be.visible').and('have.text', 'Boas vindas ao Cypress Playground')
+  })
   
   Cypress.Commands.add('noticeHave', (text) => {
     cy.get('.notice p').should('be.visible').and('have.text', text)

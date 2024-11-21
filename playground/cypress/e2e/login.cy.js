@@ -8,7 +8,7 @@ describe('Login', () => {
 
   it('Should login with success', () => {
     cy.login('papito@cyskills.com.br', 'showtime' )
-    cy.get('[data-cy="welcome-title"]').should('be.visible').and('have.text', 'Boas vindas ao Cypress Playground')
+    cy.userLoggedIn()
   })
 
   it('Should not login with wrong password', () => {
