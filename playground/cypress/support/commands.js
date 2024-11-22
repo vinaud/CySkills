@@ -42,3 +42,8 @@ Cypress.Commands.add('userLoggedIn', () => {
 Cypress.Commands.add('noticeHave', (text) => {
   cy.get('.notice p').should('be.visible').and('have.text', text)
 })
+
+Cypress.Commands.add('goTo', (route, title) => {
+  cy.get(`nav a[href="${route}"]`).click()
+  cy.contains('h2', title).should('be.visible')
+})

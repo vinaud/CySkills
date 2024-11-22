@@ -7,8 +7,7 @@ describe('input Fields', () => {
  });
 
  it('Should fill the text field', () => {
-    cy.get('nav a[href="/input-fields"]').click()
-    cy.contains('h2', 'Input Fields').should('be.visible')
+    cy.goTo('/input-fields', 'Input Fields')
     cy.get('[data-cy="fullname"]').type('Vinaud')
     cy.get('[data-cy="email"]').type('vinaud@cyskills.com.br')
     cy.get('[data-cy="number"]').type('123456')
