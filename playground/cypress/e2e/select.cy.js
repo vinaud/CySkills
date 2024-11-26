@@ -19,7 +19,7 @@ describe('Select', () => {
 
        cy.get('input[placeholder^="Linguagens de programação"]').click()
        langs.forEach(lang => {
-        cy.contains('.option-item', lang).click()
+        cy.contains('.option-item', new RegExp("^" + lang + "$")).click()
        })
        
       });
