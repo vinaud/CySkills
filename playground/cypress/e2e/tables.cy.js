@@ -1,7 +1,7 @@
 describe('Tables', () => {
     beforeEach(() => {
         cy.goHome()
-        cy.login('papito@cyskills.com.br', 'showtime' )
+        cy.doLogin()
         cy.userLoggedIn()
         cy.goTo('/tables', 'Tables')
      });

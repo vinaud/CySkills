@@ -29,6 +29,10 @@ Cypress.Commands.add('goHome', () => {
   cy.contains('h2', 'Faça login').should('be.visible')
 })
 
+Cypress.Commands.add('doLogin', () => {
+  cy.login('papito@cyskills.com.br', 'showtime' )
+})
+
 Cypress.Commands.add('login', (email, password) => {
 
 if(email){

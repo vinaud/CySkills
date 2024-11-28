@@ -2,7 +2,7 @@ describe('Radio', () => {
 
     beforeEach(() => {
        cy.goHome()
-       cy.login('papito@cyskills.com.br', 'showtime' )
+       cy.doLogin()
        cy.userLoggedIn()
        cy.goTo('/radio', 'Radio Buttons')
     });

@@ -2,7 +2,7 @@ describe('Checkbox', () => {
 
  beforeEach(() => {
     cy.goHome()
-    cy.login('papito@cyskills.com.br', 'showtime' )
+    cy.doLogin()
     cy.userLoggedIn()
     cy.goTo('/checkbox', 'Checkbox')
  });

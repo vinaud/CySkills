@@ -1,9 +1,9 @@
 describe('Date Picker', () => {
     beforeEach(() => {
-        cy.goHome()
-        cy.login('papito@cyskills.com.br', 'showtime' )
-        cy.userLoggedIn()
-        cy.goTo('/date-picker', 'Date Picker')
+      cy.goHome()
+      cy.doLogin()
+      cy.userLoggedIn()
+      cy.goTo('/date-picker', 'Date Picker')
      });
 
      it('Should select a date to input', () => {
