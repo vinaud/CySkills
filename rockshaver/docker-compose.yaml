@@ -30,7 +30,7 @@ services:
 
   rockshaver-api:
     container_name: rockshaver-api
-    image: papitodev/rockshaver-api:pong
+    image: papitodev/rockshaver-api:space
     networks:
       - skynet
     depends_on:
@@ -44,7 +44,7 @@ services:
 
   rockshaver-web:
     container_name: rockshaver-web
-    image: papitodev/rockshaver-web:pong
+    image: papitodev/rockshaver-web:space
     networks:
       - skynet
     depends_on:
@@ -55,7 +55,7 @@ services:
 
   rockshaver-mob:
     container_name: rockshaver-mob
-    image: papitodev/rockshaver-mob:pong
+    image: papitodev/rockshaver-mob:space
     networks:
       - skynet
     depends_on:
