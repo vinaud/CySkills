@@ -1,21 +1,18 @@
-describe('Login', () => {
-  it('Should Log in with success', () => {
+describe('Pre Register', () => {
+  it('Should Register with success', () => {
     cy.visit('/')
 
-    cy.get('header nav a[href="entrar"]').click()
+    cy.get('header nav a[href="pre-cadastro"]').click()
 
     cy.get('form h2')
       .should('be.visible')
       .and('have.text', 'Seus dados')
 
-    cy.get('input[placeholder="Nome"]')
+    cy.get('input[placeholder="John Doe"]')
        .type('Fernando Papito')
 
-    cy.get('input[placeholder="E-mail"]')
+    cy.get('input[placeholder="john.doe@rockshaver.com"]')
        .type('fernando@msn.com'),
-
-    cy.get('input[placeholder="Whatsapp"]')
-       .type('11999999999')
 
     cy.contains('button[type=submit]', 'Continuar').click()
 
