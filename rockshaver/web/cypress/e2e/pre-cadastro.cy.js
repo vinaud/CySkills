@@ -18,7 +18,7 @@ describe('Pre Register', () => {
 
     cy.get('.user-name')
       .should('be.visible')
-      .and('have.text', 'Fernando Papito')
+      .and('have.text', 'Olá, Fernando')
 
     cy.get('.user-email')
       .should('be.visible')
