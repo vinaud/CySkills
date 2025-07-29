@@ -1,21 +1,45 @@
 describe('Pre Register', () => {
   it('Should Register with success', () => {
-   cy.startPreRegistration('Fernando Papito', 'papito@gmail.com')
-   cy.verifyPreRegistered('Fernando', 'papito@gmail.com')
+
+    const user ={
+      fullname: 'Fernando Papito',
+      email: 'papito@gmail.com'
+    }
+
+    cy.startPreRegistration(user)
+    cy.verifyPreRegistered(user)
   })
   it('Should show error for invalid email', () => {
-    cy.startPreRegistration('Papito Fernando', 'www.com')
-    cy.alertHave('E-mail', 'O e-mail inserido é inválido.') 
+
+    const user ={
+      fullname: 'Fernando Papito',
+      email: 'papito#gmail.com'
+    }
+
+    cy.startPreRegistration(user)
+    cy.alertHave('E-mail', 'O e-mail inserido é inválido.')
   })
 
   it('Should show error when only first name is entered', () => {
-    cy.startPreRegistration('Papito', 'papito#gmail.com')
-    cy.alertHave('Nome Completo', 'Informe seu nome completo.') 
+
+    const user ={
+      fullname: 'Papito',
+      email: 'papito@gmail.com'
+    }
+
+    cy.startPreRegistration(user)
+    cy.alertHave('Nome Completo', 'Informe seu nome completo.')
   })
 
   it('Should show errors when both fields are empty', () => {
-    cy.startPreRegistration()
+
+    const user ={
+      fullname: '',
+         email: ''
+    }
+
+    cy.startPreRegistration(user)
     cy.alertHave('Nome Completo', 'O campo nome é obrigatório.')
-    cy.alertHave('E-mail', 'O campo e-mail é obrigatório.')  
+    cy.alertHave('E-mail', 'O campo e-mail é obrigatório.')
   })
 })
