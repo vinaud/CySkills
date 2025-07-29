@@ -1,17 +1,20 @@
 import preRegPage from "../support/pages/pre-reg.page"
+import homePage from "../support/pages/home.page"
 
 describe('Pre Register', () => {
   it('Should Register with success', () => {
     
-    preRegPage.go()
+    homePage.go()
+    homePage.header.goToPreReg()
     preRegPage.fillForm('Fernando Papito', 'papito@gmail.com')
     preRegPage.submit()
 
-    preRegPage.verifyPreReg('Fernando', 'papito@gmail.com')
+    homePage.header.verifyPreReg('Fernando', 'papito@gmail.com')
   })
 
   it('Should show error for invalid email', () => {
-    preRegPage.go()
+    homePage.go()
+    homePage.header.goToPreReg()
     preRegPage.fillForm('Fernando Papito', 'invalid mail')
     preRegPage.submit()
 
@@ -20,7 +23,8 @@ describe('Pre Register', () => {
   })
 
   it('Should show error when only first name is entered', () => {
-    preRegPage.go()
+    homePage.go()
+    homePage.header.goToPreReg()
     preRegPage.fillForm('Papito', 'papito@gmail.com')
     preRegPage.submit()
 
@@ -28,7 +32,8 @@ describe('Pre Register', () => {
   })
 
   it('Should show errors when both fields are empty', () => {
-    preRegPage.go()
+    homePage.go()
+    homePage.header.goToPreReg()
     preRegPage.submit()
 
    preRegPage.alertHave('Nome Completo', 'O campo nome é obrigatório')
