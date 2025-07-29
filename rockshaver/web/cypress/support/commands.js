@@ -35,9 +35,9 @@ Cypress.Commands.add('startPreRegistration', (user) => {
     cy.get('input[name="fullname"]').as('fullname')
     cy.get('input[name="email"]').as('email')
 
-    if (user.fullname) {
+    if (user.nome) {
         cy.get('@fullname')
-            .type(user.fullname);
+            .type(user.nome);
     }
     if (user.email) {
         cy.get('@email')
@@ -50,11 +50,17 @@ Cypress.Commands.add('startPreRegistration', (user) => {
 Cypress.Commands.add('verifyPreRegistered', (user) => {
     cy.get('.user-name')
         .should('be.visible')
-        .and('have.text', `Olá, ${user.fullname.split(' ')[0]}`);
+        .and('have.text', `Olá, ${user.nome.split(' ')[0]}`);
 
     cy.get('.user-email')
         .should('be.visible')
         .and('have.text', user.email);
+
+    cy.window().then((win) => {
+        const userKey =  win.localStorage.getItem('usuario')
+        expect(userKey).to.be.equal(JSON.stringify(user))
+        });
+        
 })
 
 Cypress.Commands.add('alertHave', (fieldName, text) => {

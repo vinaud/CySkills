@@ -2,7 +2,7 @@ describe('Pre Register', () => {
   it('Should Register with success', () => {
 
     const user ={
-      fullname: 'Fernando Papito',
+      nome: 'Fernando Papito',
       email: 'papito@gmail.com'
     }
 
@@ -12,7 +12,7 @@ describe('Pre Register', () => {
   it('Should show error for invalid email', () => {
 
     const user ={
-      fullname: 'Fernando Papito',
+      nome: 'Fernando Papito',
       email: 'papito#gmail.com'
     }
 
@@ -23,7 +23,7 @@ describe('Pre Register', () => {
   it('Should show error when only first name is entered', () => {
 
     const user ={
-      fullname: 'Papito',
+      nome: 'Papito',
       email: 'papito@gmail.com'
     }
 
