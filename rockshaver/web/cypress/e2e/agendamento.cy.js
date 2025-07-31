@@ -1,23 +1,28 @@
 import calendario from '../fixtures/calendario.json';
-describe('Agendamento', () => {
-    it('Deve fazer um novo agendamento', () => {
 
-        cy.dropCollection('agendamentos', {failSilently: 'true' }).then(result => {
-            cy.log(result); 
+describe('Agendamento', () => {
+
+    beforeEach(function () {
+
+        cy.fixture('agendamentos').then(agendamentos => {
+            this.agendamentos = agendamentos;
+        })
+
+        cy.dropCollection('agendamentos', { failSilently: 'true' }).then(result => {
+            cy.log(result);
         });
 
         cy.intercept('GET', 'http://localhost:3333/api/calendario', {
             statusCode: 200,
             body: calendario
-        }).as('getCalendario')
+        }).as('getCalendario');
+    });
 
-        const user = {
-            nome: 'Papito Fernando',
-            email: 'papito@yahoo.com'
-        }
+    it('Deve fazer um novo agendamento', function () {
+        const agendamento = this.agendamentos.sucesso
 
-        cy.startPreRegistration(user)
-        cy.verifyPreRegistered(user)
+        cy.startPreRegistration(agendamento.usuario)
+        cy.verifyPreRegistered(agendamento.usuario)
 
         cy.contains('a', 'Agendar um horário').click()
         cy.contains('span', 'Membros da Equipe').should('be.visible')
@@ -28,14 +33,14 @@ describe('Agendamento', () => {
 
         cy.contains('span', 'Serviços').should('be.visible')
 
-        cy.contains('div', 'Combo').parent().click()
+        cy.contains('div', agendamento.servico.descricao).parent().click()
 
         cy.contains('span', 'Dias Disponíveis').should('be.visible')
         cy.contains('span', 'Horários Disponíveis').should('be.visible')
 
-        cy.contains('.dia-semana', '1').parent().click()
+        cy.contains('.dia-semana', agendamento.dia).parent().click()
 
-        cy.contains('.hora-opcao', '11:00').click()
+        cy.contains('.hora-opcao', agendamento.hora).click()
 
         cy.contains('button', 'Confirmar e reservar').click()
 
