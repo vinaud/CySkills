@@ -48,11 +48,11 @@ Cypress.Commands.add('startPreRegistration', (user) => {
 })
 
 Cypress.Commands.add('verifyPreRegistered', (user) => {
-    cy.get('.user-name')
+    cy.get('.usuario-nome')
         .should('be.visible')
         .and('have.text', `Olá, ${user.nome.split(' ')[0]}`);
 
-    cy.get('.user-email')
+    cy.get('.usuario-email')
         .should('be.visible')
         .and('have.text', user.email);
 
