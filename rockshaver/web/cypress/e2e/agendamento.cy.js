@@ -1,5 +1,10 @@
 describe('Agendamento', () => {
     it('Deve fazer um novo agendamento', () => {
+
+        cy.dropCollection('agendamentos', {failSilently: 'true' }).then(result => {
+            cy.log(result); 
+        });
+
         const user = {
             nome: 'Papito Fernando',
             email: 'papito@yahoo.com'
@@ -12,11 +17,11 @@ describe('Agendamento', () => {
         cy.contains('span', 'Membros da Equipe').should('be.visible')
 
         cy.contains('div', 'Tina')
-        .parent()
-        .click()
+            .parent()
+            .click()
 
         cy.contains('span', 'Serviços').should('be.visible')
-        
+
         cy.contains('div', 'Combo').parent().click()
 
         cy.contains('span', 'Dias Disponíveis').should('be.visible')
@@ -29,7 +34,7 @@ describe('Agendamento', () => {
         cy.contains('button', 'Confirmar e reservar').click()
 
         cy.get('h3').should('be.visible').and('have.text', 'Tudo certo por aqui! Seu horário está confirmado.')
-        
+
     })
 
 })
