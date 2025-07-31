@@ -1,9 +1,15 @@
+import calendario from '../fixtures/calendario.json';
 describe('Agendamento', () => {
     it('Deve fazer um novo agendamento', () => {
 
         cy.dropCollection('agendamentos', {failSilently: 'true' }).then(result => {
             cy.log(result); 
         });
+
+        cy.intercept('GET', 'http://localhost:3333/api/calendario', {
+            statusCode: 200,
+            body: calendario
+        }).as('getCalendario')
 
         const user = {
             nome: 'Papito Fernando',
