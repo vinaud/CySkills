@@ -24,26 +24,13 @@ describe('Agendamento', () => {
         cy.startPreRegistration(agendamento.usuario)
         cy.verifyPreRegistered(agendamento.usuario)
 
-        cy.contains('a', 'Agendar um horário').click()
-        cy.contains('span', 'Membros da Equipe').should('be.visible')
-
-        cy.contains('div', 'Tina')
-            .parent()
-            .click()
-
-        cy.contains('span', 'Serviços').should('be.visible')
-
-        cy.contains('div', agendamento.servico.descricao).parent().click()
-
-        cy.contains('span', 'Dias Disponíveis').should('be.visible')
-        cy.contains('span', 'Horários Disponíveis').should('be.visible')
-
-        cy.contains('.dia-semana', agendamento.dia).parent().click()
-
-        cy.contains('.hora-opcao', agendamento.hora).click()
-
-        cy.contains('button', 'Confirmar e reservar').click()
-
+        cy.iniciarAgendamento();
+        cy.escolherProfissional(agendamento.profissional);
+        cy.selecionarServico(agendamento.servico.descricao);
+        cy.escolherDia(agendamento.dia);
+        cy.escolherHorario(agendamento.hora);
+        cy.finalizarAgendamento();
+        
         cy.get('h3').should('be.visible').and('have.text', 'Tudo certo por aqui! Seu horário está confirmado.')
 
     })
